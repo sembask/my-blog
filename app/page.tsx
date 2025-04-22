@@ -87,16 +87,10 @@ export default function Home() {
             icon="λ"
             link="/projetos/blog"
           />
-          <ProjectCard
-            title="Compilador Experimental"
-            description="Um compilador incremental/single-pass para estudo e experimentação."
-            icon="λ"
-            link="/projetos/compilador"
-          />
         </div>
       </section>
 
-      {/* Recent Posts Section */}
+      {/* Recent Posts Section
       <section className="space-y-6">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold">Posts Recentes ✍️</h2>
@@ -134,7 +128,7 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </section>
+      </section> */}
 
       <ChatWidget />
     </div>
