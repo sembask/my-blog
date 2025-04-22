@@ -85,7 +85,7 @@ export default function Home() {
             title="Sistema de Blog"
             description="Plataforma de blog minimalista construída com Next.js e Tailwind CSS."
             icon="λ"
-            link="/projetos/blog"
+            link="https://github.com/sembask/my-blog"
           />
         </div>
       </section>
