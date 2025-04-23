@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/button";
 
 export function Header() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { label: "Home", path: "/" },
@@ -20,7 +22,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between mx-auto">
+      <div className="container flex h-16 items-center justify-between mx-auto px-4">
         <div className="flex items-center gap-6 md:gap-10">
           <Link href="/" className="flex  space-x-2">
             <span className="font-bold text-xl">Portfolio</span>
@@ -46,9 +48,10 @@ export function Header() {
           <ThemeToggle />
           <div className="block md:hidden">
             <Button
+              onClick={() => setIsOpen(!isOpen)}
               variant="ghost"
               size="sm"
-              className="px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="h-10 w-10 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
             >
               <svg
                 strokeWidth="1.5"
@@ -84,6 +87,29 @@ export function Header() {
           </div>
         </div>
       </div>
+
+      {/* Menu Mobile */}
+      {isOpen && (
+        <div className="fixed inset-0 top-[65px] z-50  md:hidden">
+          <nav className="container flex flex-col gap-6 p-6 bg-white dark:bg-black">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  "text-lg font-medium transition-colors hover:text-primary",
+                  pathname === item.path
+                    ? "text-foreground"
+                    : "text-muted-foreground"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
