@@ -2,14 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
-interface PageProps {
+type Props = {
   params: {
     slug: string;
   };
   searchParams: { [key: string]: string | string[] | undefined };
-}
+};
 
-export default function BlogPost({ params }: PageProps) {
+export default function BlogPost({ params }: Props) {
   // Mock temporário de dados do post
   const post = {
     slug: params.slug,
