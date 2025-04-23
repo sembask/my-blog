@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 export default function BlogPost({ params }: { params: { slug: string } }) {
   // Mock temporário de dados do post
   const post = {
+    slug: params.slug,
     title: "Introdução à Programação Funcional",
     date: "12 Abril, 2023",
     content: `
