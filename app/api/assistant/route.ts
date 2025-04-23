@@ -1,6 +1,13 @@
 import { AssistantResponse } from "ai";
 import OpenAI from "openai";
 
+interface ToolCall {
+  function: {
+    name: string;
+    arguments: string;
+  };
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
@@ -46,7 +53,7 @@ export async function POST(req: Request) {
       ) {
         const tool_outputs =
           runResult.required_action.submit_tool_outputs.tool_calls.map(
-            (toolCall: any) => {
+            (toolCall: ToolCall) => {
               const parameters = JSON.parse(toolCall.function.arguments);
 
               switch (toolCall.function.name) {
