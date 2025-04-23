@@ -2,17 +2,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams: { [key: string]: string | string[] | undefined };
+type PageParams = {
+  slug: string;
 };
 
-export default function BlogPost({ params }: Props) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<PageParams>;
+}) {
+  // Aguardamos a resolução dos parâmetros
+  const resolvedParams = await params;
   // Mock temporário de dados do post
   const post = {
-    slug: params.slug,
+    slug: resolvedParams.slug,
     title: "Introdução à Programação Funcional",
     date: "12 Abril, 2023",
     content: `
